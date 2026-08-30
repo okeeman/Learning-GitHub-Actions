@@ -1,3 +1,14 @@
 name: my-first-workflow
 # To trigger on any push to this repo in any branch.
 on: push
+
+# Jobs are executed in parallel.
+jobs:
+  name: JOB1
+  runs-on: ubuntu-latest
+  # Steps are executed in sequence.
+  steps: 
+  - name: Running Single Command in Job1
+    run: echo "This is my first GitHub workflow."
+  - name: Checking OS release for GitHub hosted runner.
+    run: cat /etc/os-release
