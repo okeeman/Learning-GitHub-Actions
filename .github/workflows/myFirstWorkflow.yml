@@ -25,5 +25,20 @@ jobs:
       # Use pipe, then go to next line for multiple commmands, indent commands.
       run: |
         echo "Hi from okeeman"
-        echo "Current time is 'date'"
+        echo "Current time is `date`"
         sleep 20
+  job3:
+    name: JOB3
+    # Triggered when job1 is completed.
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+    - name: Job with single dependency.
+      run: sleep 10
+  job4:
+    name: JOB4
+    needs: [job1,job2,job3]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Job with multiple dependencies.
+      run: sleep 10
