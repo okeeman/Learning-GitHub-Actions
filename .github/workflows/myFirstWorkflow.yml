@@ -1,6 +1,11 @@
 name: my-first-workflow
 # To trigger on any push to this repo in any branch.
-on: push
+on: 
+  # Put trigger on next line (after on:) and with colon if more than one.
+  #push:
+  schedule:
+     # Execute every minute.
+    - cron: "*/1 * * * *"
 
 # Jobs are executed in parallel.
 jobs:
