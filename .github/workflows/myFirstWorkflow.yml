@@ -31,14 +31,19 @@ jobs:
     name: JOB3
     # Triggered when job1 is completed.
     needs: job1
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - name: Job with single dependency.
       run: sleep 10
+    - name: Check runner.
+      shell: pwsh
+      run: get-computer-info
   job4:
     name: JOB4
     needs: [job1,job2,job3]
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
     - name: Job with multiple dependencies.
       run: sleep 10
+    - name: Check runner.
+      run: sw_vers
