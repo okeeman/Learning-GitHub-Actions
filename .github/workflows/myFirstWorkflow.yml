@@ -28,11 +28,3 @@ jobs:
         pwd
         ls -ltr
         hostname
-    
-  
-   
-    steps:
-    - name: Job with multiple dependencies.
-      run: sleep 10
-    - name: Check runner.
-      run: sw_vers
