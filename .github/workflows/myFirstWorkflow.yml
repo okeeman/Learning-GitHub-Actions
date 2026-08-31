@@ -56,6 +56,23 @@ jobs:
           artifacts/
           # Exclude, do not upload, anywhere in this file path, this file.
           !**/hostname.txt
+  job2:
+      name: JOB2
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checking current directory.
+        run: |
+          pwd
+          ls -ltr
+      - name: Download single file artifact.
+        uses: actions/download-artifact@v8
+        with:
+          # Name in this file, not the file name.
+          name: single_file
+      - name: Checking current directory post download.
+        run: |
+          pwd
+          ls -ltr
           
         
    
