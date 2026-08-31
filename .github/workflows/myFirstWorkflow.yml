@@ -16,39 +16,21 @@ jobs:
     runs-on: ubuntu-latest
     # Steps are executed in sequence.
     steps: 
-    - name: Running Single Command in Job1
-      run: echo "This is my first GitHub workflow."
-    - name: Checking OS release for GitHub hosted runner.
-      run: cat /etc/os-release
-    - name: Calling sleep.
-      run: sleep 20
-  job2:
-    name: JOB2
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checking the host name for runner.
-      run: hostname
-    - name: Running multiple commands.
-      # Use pipe, then go to next line for multiple commmands, indent commands.
+    - name: Step-1
       run: |
-        echo "Hi from okeeman"
-        echo "Current time is `date`"
-        sleep 20
-  job3:
-    name: JOB3
-    # Triggered when job1 is completed.
-    needs: job1
-    runs-on: windows-latest
-    steps:
-    - name: Job with single dependency.
-      run: sleep 10
-    - name: Check runner.
-      shell: pwsh
-      run: get-computerinfo
-  job4:
-    name: JOB4
-    needs: [job1,job2,job3]
-    runs-on: macos-latest
+        pwd 
+        ls -ltr
+        hostname
+    - name: Step-2 - Checkout
+      uses: actions/checkout@v7.0.1
+    - name: Step-3
+      runs: |
+        pwd
+        ls -ltr
+        hostname
+    
+  
+   
     steps:
     - name: Job with multiple dependencies.
       run: sleep 10
