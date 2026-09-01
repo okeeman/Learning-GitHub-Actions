@@ -100,7 +100,7 @@ jobs:
         run: |
           pwd
           ls -ltr
-   job4:
+  job4:
       name: JOB4
       needs: job1
       runs-on: ubuntu-latest
@@ -121,9 +121,9 @@ jobs:
         run: |
           pwd
           echo "Checking single file directory"
-          ls -ltr single_file
-          echo "Checking directory artifacts"
-          ls -ltr download_directory
+         ls -ltr single_file
+         echo "Checking directory artifacts"
+         ls -ltr download_directory
           
         
    
