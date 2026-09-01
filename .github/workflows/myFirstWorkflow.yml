@@ -48,7 +48,7 @@ jobs:
           ./myartifact.txt
           artifacts/
     - name: Upload from multiple paths with exclusions.
-      uses: actions/upload-artifact@v7
+      uses: actions/upload-artifact@v5.0.0
       with:
         name: multiple_paths_exclusions
         path: |
@@ -58,6 +58,7 @@ jobs:
           !**/hostname.txt
   job2:
       name: JOB2
+      needs: job1
       runs-on: ubuntu-latest
       steps:
       - name: Checking current directory.
@@ -65,10 +66,28 @@ jobs:
           pwd
           ls -ltr
       - name: Download single file artifact.
-        uses: actions/download-artifact@v8
+        # Changed from v7 to older version to see if that will work for single file download.
+        uses: actions/download-artifact@v5.0.0
         with:
           # Name in this file, not the file name.
           name: single_file
+      - name: Checking current directory post download.
+        run: |
+          pwd
+          ls -ltr
+  job3:
+      name: JOB3
+      needs: job1
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checking current directory.
+        run: |
+          pwd
+          ls -ltr
+      - name: Download directory.
+        uses: actions/download-artifact@v5.0.0
+        with:
+          name: directory_artifacts
       - name: Checking current directory post download.
         run: |
           pwd
