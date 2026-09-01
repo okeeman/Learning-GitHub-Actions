@@ -84,6 +84,35 @@ jobs:
         run: |
           pwd
           ls -ltr
+      - name: Download single file artifact.
+       # Changed from v7 to older version to see if that will work for single file download.
+        uses: actions/download-artifact@v5.0.0
+        with:
+          # Name in this file, not the file name.
+          name: single_file
+          path: single_file
+      - name: Download directory.
+        uses: actions/download-artifact@v5.0.0
+        with:
+          name: directory_artifacts
+          path: download_directory
+      - name: Checking current directory post download.
+        run: |
+          pwd
+          ls -ltr
+   job4:
+      name: JOB4
+      needs: job1
+      runs-on: ubuntu-latest
+      steps:
+      - name: Creating custom folder for download.
+        run: |
+          mkdir -p single_file
+          mkdir -p download_directory
+      - name: Checking current directory.
+        run: |
+          pwd
+          ls -ltr
       - name: Download directory.
         uses: actions/download-artifact@v5.0.0
         with:
@@ -91,7 +120,10 @@ jobs:
       - name: Checking current directory post download.
         run: |
           pwd
-          ls -ltr
+          echo "Checking single file directory"
+          ls -ltr single_file
+          echo "Checking directory artifacts"
+          ls -ltr download_directory
           
         
    
