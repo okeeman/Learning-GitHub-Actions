@@ -17,6 +17,11 @@ on:
     branches:
       - main
 
+env:
+  ENV_TYPE: DEV
+  APP_USER: okeeman
+  APP_PORT: 80
+
 # Jobs are executed in parallel.
 jobs:
   job1:
@@ -85,4 +90,9 @@ jobs:
           ls -ltr
       - name: Step PR demo.
         run: exit 0
+      - name: Referencing environment variables.
+        run: |
+          echo "Running environment $ENV_TYPE with user $APP_USER"
+          echo "[INFO] Accessible on port $APP_PORT"
+      
   
