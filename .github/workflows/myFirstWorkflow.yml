@@ -3,11 +3,24 @@ name: my-first-workflow
 on: 
   # Put trigger on next line (after on:) and with colon if more than one.
   push:
-  schedule:
+    branches:
+      - dev
+      # feature- with anything after it.
+      #- 'feature-*'
+      - main
+  #schedule:
      # Execute every 5 minutes.
-    - cron: "5 * * * *"
+    #- cron: "5 * * * *"
   # This trigger allows for manual execution.
   workflow_dispatch: 
+  pull_request: 
+    branches:
+      - main
+
+env:
+  ENV_TYPE: DEV
+  APP_USER: okeeman
+  APP_PORT: 80
 
 # Jobs are executed in parallel.
 jobs:
@@ -75,55 +88,11 @@ jobs:
         run: |
           pwd
           ls -ltr
-  job3:
-      name: JOB3
-      needs: job1
-      runs-on: ubuntu-latest
-      steps:
-      - name: Checking current directory.
+      - name: Step PR demo.
+        run: exit 0
+      - name: Referencing environment variables.
         run: |
-          pwd
-          ls -ltr
-      - name: Download single file artifact.
-       # Changed from v7 to older version to see if that will work for single file download.
-        uses: actions/download-artifact@v5.0.0
-        with:
-          # Name in this file, not the file name.
-          name: single_file
-          path: single_file
-      - name: Download directory.
-        uses: actions/download-artifact@v5.0.0
-        with:
-          name: directory_artifacts
-          path: download_directory
-      - name: Checking current directory post download.
-        run: |
-          pwd
-          ls -ltr
-  job4:
-      name: JOB4
-      needs: job1
-      runs-on: ubuntu-latest
-      steps:
-      - name: Creating custom folder for download.
-        run: |
-          mkdir -p single_file
-          mkdir -p download_directory
-      - name: Checking current directory.
-        run: |
-          pwd
-          ls -ltr
-      - name: Download directory.
-        uses: actions/download-artifact@v5.0.0
-        with:
-          name: directory_artifacts
-      - name: Checking current directory post download.
-        run: |
-          pwd
-          echo "Checking single file directory"
-          ls -ltr single_file
-          echo "Checking directory artifacts"
-          ls -ltr download_directory
-          
-        
-   
+          echo "Running environment $ENV_TYPE with user $APP_USER"
+          echo "[INFO] Accessible on port $APP_PORT"
+      
+  
