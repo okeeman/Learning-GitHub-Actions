@@ -94,5 +94,8 @@ jobs:
         run: |
           echo "Running environment $ENV_TYPE with user $APP_USER"
           echo "[INFO] Accessible on port $APP_PORT"
+      - name: Referencing repo secret.
+        run: |
+          echo "[INFO] Application password is $((secrets.APP_PASSWORD))
       
   
