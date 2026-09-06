@@ -96,6 +96,19 @@ jobs:
           echo "[INFO] Accessible on port $APP_PORT"
       - name: Referencing repo secret.
         run: |
-          echo "[INFO] Application password is ${{secrets.APP_SECRET}}"
+          echo "[INFO] Application password is ${{secrets.APP_SECRET}}"#
+########
+job3:
+  name: JOB3
+  runs-on: ubuntu-latest
+  steps:
+    - name: Referring to context or in-built variables.
+      run: |
+        echo "[INFO] Triggered by ${{github.event_name}}."
+        echo "[INFO] Change added by ${{github.actor}} in ${{github.ref_name}} branch."
+        echo "[INFO] Current step is running on ${{runner.os}}."
+        echo "[INFO] Current job id is ${{job.check_run_id}}."
+          
+          
       
   
