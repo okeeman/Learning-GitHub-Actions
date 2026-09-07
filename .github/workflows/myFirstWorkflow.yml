@@ -121,6 +121,7 @@ jobs:
     # Therefore, the environment must be specified.
     environment:     
       name: STAGING
+    if: github.ref == 'refs/head/dev'  
 ####
   production:
     name: PRODUCTION DEPLOYMENT
@@ -132,6 +133,7 @@ jobs:
         run: echo "Password for ${{vars.USER}} is ${{secrets.PASSWORD}}."
     environment:     
       name: PRODUCTION
+    if: github.ref == 'refs/head/main'  
 
           
           
