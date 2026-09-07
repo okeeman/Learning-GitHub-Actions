@@ -108,6 +108,7 @@ jobs:
           echo "[INFO] Change added by ${{github.actor}} in ${{github.ref_name}} branch."
           echo "[INFO] Change added by ${{github.actor}} in ${{github.head_ref}} (head_ref) branch."
           echo "Running on branch ${GITHUB_REF##*/} ${GITHUB_REF}."
+          # Running on branch dev refs/heads/dev.
           echo "[INFO] Current step is running on ${{runner.os}}."
           echo "[INFO] Current job id is ${{job.check_run_id}}."
 ####   
@@ -123,8 +124,8 @@ jobs:
     # Therefore, the environment must be specified.
     environment:     
       name: STAGING
-    #if: github.head_ref == 'refs/head/dev'  
-    if: github.head_ref == 'dev'
+    if: github.head_ref == 'refs/head/dev'  
+    #if: github.head_ref == 'dev'
 ####
   production:
     name: PRODUCTION DEPLOYMENT
@@ -136,8 +137,8 @@ jobs:
         run: echo "Password for ${{vars.USER}} is ${{secrets.PASSWORD}}."
     environment:     
       name: PRODUCTION
-    #if: github.ref == 'refs/head/main'  
-    if: github.head_ref == 'main'
+    if: github.ref == 'refs/head/main'  
+    #if: github.head_ref == 'main'
 
           
           
