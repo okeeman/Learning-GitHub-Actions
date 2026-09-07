@@ -121,7 +121,7 @@ jobs:
     # Therefore, the environment must be specified.
     environment:     
       name: STAGING
-    if: github.ref == 'refs/head/dev'  
+    if: github.head_ref == 'refs/head/dev'  
 ####
   production:
     name: PRODUCTION DEPLOYMENT
