@@ -135,7 +135,8 @@ jobs:
         run: echo "Password for ${{vars.USER}} is ${{secrets.PASSWORD}}."
     environment:     
       name: PRODUCTION
-    if: github.ref == 'refs/head/main'  
+    #if: github.ref == 'refs/head/main'  
+    if: github.head_ref == 'main'
 
           
           
