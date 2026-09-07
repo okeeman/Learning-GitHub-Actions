@@ -106,6 +106,7 @@ jobs:
         run: |
           echo "[INFO] Triggered by ${{github.event_name}}."
           echo "[INFO] Change added by ${{github.actor}} in ${{github.ref_name}} branch."
+          echo "[INFO] Change added by ${{github.actor}} in ${{github.head_ref}} (head_ref) branch."
           echo "[INFO] Current step is running on ${{runner.os}}."
           echo "[INFO] Current job id is ${{job.check_run_id}}."
 ####   
@@ -121,7 +122,8 @@ jobs:
     # Therefore, the environment must be specified.
     environment:     
       name: STAGING
-    if: github.head_ref == 'refs/head/dev'  
+    #if: github.head_ref == 'refs/head/dev'  
+    if: github.head_ref == 'dev'
 ####
   production:
     name: PRODUCTION DEPLOYMENT
