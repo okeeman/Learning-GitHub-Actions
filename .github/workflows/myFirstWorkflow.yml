@@ -127,7 +127,7 @@ jobs:
       name: STAGING
     #if: github.head_ref == 'refs/head/dev'  
     #if: github.head_ref == 'dev'
-    if: github.ref == 'dev'
+    if: github.ref == 'refs/head/dev'
 ####
   production:
     name: PRODUCTION DEPLOYMENT
