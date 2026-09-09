@@ -126,9 +126,9 @@ jobs:
     environment:     
       name: STAGING
     #if: github.head_ref == 'refs/head/dev'  
-    #if: github.head_ref == 'dev'
+    if: github.head_ref == 'dev'
     #if: github.ref == 'refs/head/dev'
-    if: github.head_ref == 'merge'
+    #if: github.head_ref == 'merge'
 ####
   production:
     name: PRODUCTION DEPLOYMENT
