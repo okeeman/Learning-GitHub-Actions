@@ -1,0 +1,20 @@
+# Use the official lightweight Python image
+FROM python:3.11-slim
+
+# Set working directory inside container
+WORKDIR /app
+
+# Copy dependency list first (for caching)
+COPY requirements.txt .
+
+# Install dependencies without cache to reduce image size
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application
+COPY . .
+
+# Expose the port Flask will run on
+EXPOSE 5000
+
+# Command to run the app
+CMD ["python", "app.py"]
