@@ -1,0 +1,25 @@
+# Ignore git and CICD files
+.git
+.gitignore
+.github/
+
+# Ignore tests and temporary files
+tests/
+test/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Ignore local dev artifacts
+.env
+venv/
+.envrc
+*.sqlitr3
+*.db
+.DS_Store
+
+# Ignore Docker build artifacts
+Dockerfile
+.dockerignore
